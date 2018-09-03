@@ -20,10 +20,10 @@ class NeuralNetwork private (_data: NetworkData) {
 
 	def this(sizes: Seq[Int]) = this {
 		val weights: Array[Array[Array[R]]] = (for (s <- sizes.zip(sizes.tail)) yield {
-			Array.fill(s._2, s._1)(Random.nextDouble())
+			Array.fill(s._2, s._1)((Random.nextDouble() - 0.5) * 2)
 		}).toArray
 		val biases: Array[Array[R]] = (for (s <- sizes.tail) yield {
-			Array.fill(s)(Random.nextDouble())
+			Array.fill(s)((Random.nextDouble() - 0.5) * 2)
 		}).toArray
 		NetworkData(weights, biases)
 	}
